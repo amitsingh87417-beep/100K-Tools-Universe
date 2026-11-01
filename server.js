@@ -1,0 +1,12 @@
+import express from "express";
+import helmet from "helmet";
+import cors from "cors";
+import rateLimit from "express-rate-limit";
+const app=express();
+app.use(helmet());
+app.use(cors({origin:process.env.ALLOWED_ORIGIN?.split(",")||true}));
+app.use(express.json({limit:"30kb"}));
+app.use("/api",rateLimit({windowMs:60000,limit:60,standardHeaders:true,legacyHeaders:false}));
+app.get("/api/health",(_req,res)=>res.json({ok:true,service:"100K Tools Universe API",time:new Date().toISOString()}));
+app.post("/api/feedback",(req,res)=>{const {message}=req.body||{};if(typeof message!=="string"||message.trim().length<3||message.length>2000)return res.status(400).json({error:"Enter a message under 2,000 characters."});res.status(202).json({accepted:true,note:"Demo endpoint only; connect persistent storage before collecting submissions."});});
+app.listen(process.env.PORT||4000,()=>console.log("API server ready"));
