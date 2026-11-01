@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: 100k-tools-universe-api
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm run api
+    envVars:
+      - key: NODE_VERSION
+        value: 20
+      - key: ALLOWED_ORIGIN
+        sync: false
