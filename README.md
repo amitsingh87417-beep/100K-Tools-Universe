@@ -1,47 +1,52 @@
-# 100K Tools Universe
+# 100K Tools Universe — v2.1.0
 
-Premium White + Blue responsive starter for mobile, tablet and desktop.
+A responsive browser-based utility catalogue with 1,000 searchable tool configurations.
 
-## What's included
-- Searchable catalogue of 500 tool listings across 9 categories.
-- Browser-based working tools for text, math, conversions, dates, JSON, URL/Base64, HTML escaping, binary, password-strength estimation, SHA-256, CSV/JSON, email-format checking, metadata text and more.
-- Vite frontend for Vercel.
-- Express API starter for Render with Helmet, CORS, rate limiting and health endpoint.
+## Included in this update
 
-## Important accuracy note
-The 500 launch entries are catalogue listings/presets, not 500 separately engineered algorithms. A number of listings share common engines. The initial core tools are functional; preset entries may use a shared/general engine and should be individually reviewed before claiming each as a distinct fully working tool. QR Text Payload prepares text but does not render a QR image. CSV support is intentionally simple and does not cover every quoted CSV edge case. Feedback API does not persist messages.
+- 1,000 searchable tool listings across 10 categories.
+- 90+ named utility families and workflow variants. Related variants intentionally share browser-side engines; this is not a claim of 1,000 separate algorithms.
+- Working browser-side tools for text cleanup and analysis, calculators, date helpers, unit conversions, JSON/CSV, encoding/decoding, URL utilities, password generation, SHA-256, UUIDs, Morse/NATO, Roman numerals and more.
+- Search, category filters, A–Z sorting and favorites.
+- Recently opened tools and local result history (stored in the current browser using localStorage).
+- Copy and download result actions.
+- Keyboard shortcuts: Ctrl/Cmd + K focuses search; Escape returns from a tool.
+- Responsive white-and-blue interface for mobile, tablet and desktop.
 
 ## Run locally
-Requires Node.js 20+.
-```bash
-npm install
-npm run dev
-```
-Open the Vite URL printed in your terminal. Run the API in another terminal:
-```bash
-npm run api
-```
-Test `http://localhost:4000/api/health`.
 
-## Vercel frontend deployment
-1. Upload this project to a GitHub repository.
-2. In Vercel select Add New → Project and import the repository.
-3. Framework: Vite; build command: `npm run build`; output directory: `dist`.
-4. Deploy. `vercel.json` includes a fallback rewrite.
+1. Install Node.js 20 or later.
+2. Open this project folder in a terminal.
+3. Run `npm install`.
+4. Run `npm run dev`.
+5. Open the local URL printed by Vite.
 
-## Render API deployment
-1. Create a Render Web Service from the same GitHub repository.
-2. Build command: `npm install`; start command: `npm run api`.
-3. Set `ALLOWED_ORIGIN` to your exact Vercel site URL.
-4. Deploy and test `/api/health`.
+## Deploy to Vercel
 
-## Supabase (optional next phase)
-Supabase is not yet connected to the UI. Add it when accounts, synced favorites or saved history are required:
-1. Create a Supabase project and tables such as `profiles`, `favorites`, and `tool_runs`.
-2. Enable Row Level Security on all user-owned tables. Policies should restrict records to `auth.uid()`.
-3. Frontend may contain only the project URL and anon/publishable key.
-4. Never put the Supabase `service_role` key in frontend code. Keep privileged operations on Render in server-side environment variables.
-5. Add privacy, retention and account-deletion controls before collecting personal data.
+1. Upload this folder to a Git repository.
+2. Import the repository in Vercel.
+3. Framework preset: Vite.
+4. Build command: `npm run build`.
+5. Output directory: `dist`.
+6. Deploy.
 
-## Before public launch
-Test every listing on desktop and mobile, add automated tests and accessibility checks, write privacy policy/terms/contact pages, and monitor abuse and errors. Do not advertise 100,000 available tools until they are implemented and verified.
+`vercel.json` includes an SPA rewrite.
+
+## Important scope and privacy notes
+
+- The included utilities run in the browser; no API key or backend is required for these features.
+- Favorites, recent tools and result history stay in the browser's localStorage on that device/browser. They do not sync between devices.
+- This release provides 1,000 usable tool listings/configurations powered by shared utility engines. A listing variant is not a separate algorithm.
+- Some tools accept simplified CSV input; complex quoted CSV files should be handled with a dedicated CSV parser before using in production.
+- Email validation checks syntax only; it does not verify mailbox existence.
+- Password strength is a basic local estimate, not a security audit. Never enter a real password into a website you do not trust.
+- The QR text tool prepares payload text; it does not create a QR image.
+- This is a front-end release. User accounts, cloud sync, admin publishing, server-side processing, analytics and monetization require separately implemented backend services.
+
+## Project structure
+
+- `index.html` — app entry and metadata
+- `src/main.js` — tool catalogue, tool engines and UI interactions
+- `src/styles.css` — responsive visual design
+- `package.json` — Vite scripts and dependency
+- `vercel.json` — SPA routing

@@ -1,20 +1,14 @@
 {
   "name": "100k-tools-universe",
-  "version": "1.0.0",
   "private": true,
+  "version": "2.1.0",
   "type": "module",
   "scripts": {
     "dev": "vite --host 0.0.0.0",
     "build": "vite build",
-    "api": "node api/server.js"
-  },
-  "dependencies": {
-    "cors": "^2.8.5",
-    "express": "^5.1.0",
-    "express-rate-limit": "^8.1.0",
-    "helmet": "^8.1.0"
+    "preview": "vite preview --host 0.0.0.0"
   },
   "devDependencies": {
-    "vite": "^7.1.7"
+    "vite": "^6.0.0"
   }
 }
